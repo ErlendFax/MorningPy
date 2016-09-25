@@ -1,5 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
+import requests # Brukes til å sende og hente.
+import xml.dom.minidom # Brukes til å lage en pretty-versjon av xml-filen som lagres på disk.
+import xml.etree.ElementTree as ET # Brukes til å hente elementer fra xml-filen (tror jeg).
 
 SOAP_ACTION_GET_STOP_MONITORING = "GetStopMonitoring"
 NODE_MONITORED_VEHICLE_JOURNEY = "MonitoredVehicleJourney"
@@ -8,7 +9,6 @@ SIRI_SM_SERVICE = "http://st.atb.no/SMWS/SMService.svc"
 SIRI_NAMESPACE = "http://www.siri.org.uk/siri"
 
 STOP_ID = "16010011"
-
 
 def getEnvelope(stopId, namespace):
     return ("<S:Envelope xmlns:S='http://schemas.xmlsoap.org/soap/envelope/' xmlns:s='http://www.siri.org.uk/siri' xmlns:b='" + namespace + "'>" +
@@ -25,23 +25,33 @@ def getEnvelope(stopId, namespace):
             "   </S:Body>" +
             "</S:Envelope>")
 
+
 def busStopForecast(stopId,namespace,url):
 
     body = getEnvelope(STOP_ID, SIRI_NAMESPACE)
-    headers = {'content-type': 'text/xml', "SOAPAction": SOAP_ACTION_GET_STOP_MONITORING}
+    headers = {'Content-type': 'text/xml; charset=UTF-8', "SOAPAction": SOAP_ACTION_GET_STOP_MONITORING}
 
     response = requests.post(SIRI_SM_SERVICE, data=body, headers=headers)
-    print(response.content)
 
-    soup = BeautifulSoup(response.content, 'xml')
-    print(soup.prettify)
+    if response.status_code == 200:
+        print("Success")
+    else:
+        print("Error code: ", end='')
+        print(response.status_code)
 
+    myXML = xml.dom.minidom.parseString(response.content) # Denne lager en xml-fil slik at vi ...
+    pretty_xml_string = myXML.toprettyxml(encoding='utf-8') # ... her kan gjøre den pretty før den lagres på en fil.
 
-    #page_text = r.text.encode('utf-8').decode('ascii', 'ignore')
-    #page_soupy = BeautifulSoup.BeautifulSoup(page_text)
+    root = ET.fromstring(response.content) # Denne laget en datastruktur man kan arbeide med (tror jeg?).
 
+    f = open("AtB.xml", "wb")
+    f.write(pretty_xml_string) # Lagrer en xml fil som er 'pretty'.
+    f.close()
 
-busStopForecast(STOP_ID,SIRI_NAMESPACE,SIRI_SM_SERVICE)
+def main():
+    busStopForecast(STOP_ID,SIRI_NAMESPACE,SIRI_SM_SERVICE)
 
+if __name__ == '__main__':
+    main()
 
 
