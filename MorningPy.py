@@ -1,6 +1,6 @@
 import requests # Brukes til å sende og hente.
-import xml.dom.minidom # Brukes til å lage en pretty-versjon av xml-filen som lagres på disk.
-import xml.etree.ElementTree as ET # Brukes til å hente elementer fra xml-filen (tror jeg).
+import bs4 # Håndtering av XML
+
 
 SOAP_ACTION_GET_STOP_MONITORING = "GetStopMonitoring"
 NODE_MONITORED_VEHICLE_JOURNEY = "MonitoredVehicleJourney"
@@ -38,14 +38,15 @@ def busStopForecast(stopId,namespace,url):
     else:
         print("Error code: ", end='')
         print(response.status_code)
+        return
 
-    myXML = xml.dom.minidom.parseString(response.content) # Denne lager en xml-fil slik at vi ...
-    pretty_xml_string = myXML.toprettyxml(encoding='utf-8') # ... her kan gjøre den pretty før den lagres på en fil.
+    soup = bs4.BeautifulSoup(response.content, "lxml-xml", from_encoding='UTF-8')
 
-    root = ET.fromstring(response.content) # Denne laget en datastruktur man kan arbeide med (tror jeg?).
+    print("Title:", end='')
+    print(soup.find('StopPointName'))
 
     f = open("AtB.xml", "wb")
-    f.write(pretty_xml_string) # Lagrer en xml fil som er 'pretty'.
+    f.write(soup.prettify(encoding='UTF-8',formatter='minimal')) # Lagrer en xml fil som er 'pretty'.
     f.close()
 
 def main():
@@ -53,5 +54,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
