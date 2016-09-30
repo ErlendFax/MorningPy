@@ -3,7 +3,6 @@
 import requests # Brukes til å sende og hente.
 import bs4 # Håndtering av XML
 import xml.etree.ElementTree as ET # Alternativt bibliotek for XML-parsing
-from collections import namedtuple
 import time
 
 SOAP_ACTION_GET_STOP_MONITORING = "GetStopMonitoring"
@@ -12,11 +11,13 @@ NODE_MONITORED_VEHICLE_JOURNEY = "MonitoredVehicleJourney"
 SIRI_SM_SERVICE = "http://st.atb.no/SMWS/SMService.svc"
 SIRI_NAMESPACE = "http://www.siri.org.uk/siri"
 
+# Bus-stop identifier. Available at AtB's webpages.
 STOP_ID = "16010576"
 
-TimeStruct = namedtuple('TimeStruct', ['Orig', 'Real'])
-
-def getDepartureTimesAsveien(tree):
+def getDepartureTimes(tree, busNo):
+    """ Given a tree corresponding to the desired bus-stop, and line-no, this
+    function will return a list of tuples (index, time_struct) corresponding to
+    the buses in the given tree "tree". """
     root = tree.getroot()
 
     # Navigate the tree (consider collecting loops)
@@ -51,7 +52,7 @@ def getDepartureTimesAsveien(tree):
         for node in bus:
             if node.tag == "LineRef":
                 # .text returns "polluted" text :-(
-                if(node.text.find("5") != -1):
+                if(node.text.find(str(busNo)) != -1):
                    myBuses.append(bus)
                 break
 
@@ -87,31 +88,6 @@ def getDepartureTimesAsveien(tree):
     busTimes = sorted(busTimes, key=lambda tup: tup[0])
 
     return busTimes
-
-def getArrivalTimes(tree, location):
-    """Input: XML-tree and name of bus stop. Has to be the name used in AtB's XML.
-    Output: A list of existing aimed arrival times."""
-    root = tree.getroot()
-    StopMonitoringDelivery = root[0][0][1][0]
-
-    # remove all non-MonitoredStopVisit-elements from tree:
-    MonitoredStopVisits = []
-    for deliveryElements in StopMonitoringDelivery:
-        if deliveryElements.tag.find("MonitoredStopVisit") != -1:
-            MonitoredStopVisits.append(deliveryElements)
-
-    # remove all MonitoredStopVisits with incorrect location:
-    ElementsOfInterest = []
-    for elem in MonitoredStopVisits:
-        if elem[2][6].text.find(location) != -1:
-            ElementsOfInterest.append(elem)
-
-    # create list of arrival times
-    TimeTable = []
-    for elem in ElementsOfInterest:
-        TimeTable.append(elem[2][13][6].text)
-
-    return TimeTable
 
 def getEnvelope(stopId, namespace):
     return ("<S:Envelope xmlns:S='http://schemas.xmlsoap.org/soap/envelope/' xmlns:s='http://www.siri.org.uk/siri' xmlns:b='" + namespace + "'>" +
@@ -153,9 +129,14 @@ def busStopForecast(stopId,namespace,url):
     f.close()
 
 def main():
-    #busStopForecast(STOP_ID,SIRI_NAMESPACE,SIRI_SM_SERVICE)
+    # Uncomment line below to request new XML-data from AtB
+    # busStopForecast(STOP_ID,SIRI_NAMESPACE,SIRI_SM_SERVICE)
     tree = ET.parse('AtB.xml')
-    getDepartureTimesAsveien(tree)
+    departures = getDepartureTimes(tree, 5)
+
+    # Example: printing H:M
+    for item in departures:
+        print(item[1].tm_hour, ":",  item[1].tm_min)
 
 if __name__ == '__main__':
     main()
