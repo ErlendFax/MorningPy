@@ -55,11 +55,12 @@ def getDepartureTimesAsveien(tree):
                    myBuses.append(bus)
                 break
 
-    # Extract orginally departure time (nice to have)
+    # Extract times (WARN: skjeten kode ahead!)
     aimedTimes = []
     expectedTimes = []
 
     i = 0
+    j = 0
     for bus in myBuses:
         for node in bus:
             if node.tag == "MonitoredCall":
@@ -68,23 +69,24 @@ def getDepartureTimesAsveien(tree):
                         aimedTime = subnode.text
                         aimedTime = aimedTime.replace("\n", "")
                         aimedTime = aimedTime.replace(" ", "")
-                        aimedTimes.append((i, aimedTime))
+                        aimedTime = aimedTime[11:19]
+                        aimedTimeS = time.strptime(aimedTime, "%H:%M:%S")
+                        aimedTimes.append((i, aimedTimeS))
                         i = i + 1
                     if subnode.tag == "ExpectedDepartureTime":
                         expectedTime = subnode.text
                         expectedTime = expectedTime.replace("\n", "")
                         expectedTime = expectedTime.replace(" ", "")
-                        expectedTimes.append((i,expectedTime))
+                        expectedTime = expectedTime[11:19]
+                        expectedTimeS = time.strptime(expectedTime, "%H:%M:%S")
+                        expectedTimes.append((j,expectedTimeS))
+                        j = j + 1
 
-    for item in aimedTimes:
-        print(item)
+    # TODO: Return in time-module format
+    busTimes = aimedTimes + expectedTimes # smooth
+    busTimes = sorted(busTimes, key=lambda tup: tup[0])
 
-    for item in expectedTimes:
-        print(item)
-
-
-
-
+    return busTimes
 
 def getArrivalTimes(tree, location):
     """Input: XML-tree and name of bus stop. Has to be the name used in AtB's XML.
@@ -153,7 +155,7 @@ def busStopForecast(stopId,namespace,url):
 def main():
     #busStopForecast(STOP_ID,SIRI_NAMESPACE,SIRI_SM_SERVICE)
     tree = ET.parse('AtB.xml')
-    print(getDepartureTimesAsveien(tree))
+    getDepartureTimesAsveien(tree)
 
 if __name__ == '__main__':
     main()
