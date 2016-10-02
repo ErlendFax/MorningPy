@@ -4,7 +4,7 @@
   <GetStopMonitoringResponse>
    <ServiceDeliveryInfo>
     <ResponseTimestamp>
-     2016-09-26T21:10:49.9054076+02:00
+     2016-10-01T20:34:15.2423765+02:00
     </ResponseTimestamp>
     <ProducerRef>
      ATB
@@ -16,100 +16,17 @@
    <Answer>
     <StopMonitoringDelivery version="1.4">
      <ResponseTimestamp>
-      2016-09-26T21:10:49.9366072+02:00
+      2016-10-01T20:34:15.2579777+02:00
      </ResponseTimestamp>
      <ValidUntil>
-      2016-09-26T22:10:49.9366072+02:00
+      2016-10-01T21:34:15.2579777+02:00
      </ValidUntil>
      <ShortestPossibleCycle>
       PT1M
      </ShortestPossibleCycle>
      <MonitoredStopVisit>
       <RecordedAtTime>
-       2016-09-26T21:10:43.5423748
-      </RecordedAtTime>
-      <MonitoringRef>
-       16010576
-      </MonitoringRef>
-      <MonitoredVehicleJourney>
-       <LineRef>
-        19
-       </LineRef>
-       <DirectionRef>
-        go
-       </DirectionRef>
-       <VehicleMode>
-        bus
-       </VehicleMode>
-       <RouteRef>
-        00190078
-       </RouteRef>
-       <PublishedLineName>
-        19
-       </PublishedLineName>
-       <OriginRef>
-        16010186
-       </OriginRef>
-       <OriginName>
-        Hurtigbåtterm.
-       </OriginName>
-       <DestinationRef>
-        16010640
-       </DestinationRef>
-       <DestinationName>
-        Sandmoen
-       </DestinationName>
-       <OriginAimedDepartureTime>
-        2016-09-26T20:55:00+02:00
-       </OriginAimedDepartureTime>
-       <DestinationAimedArrivalTime>
-        2016-09-26T21:39:00+02:00
-       </DestinationAimedArrivalTime>
-       <Monitored>
-        true
-       </Monitored>
-       <CourseOfJourneyRef>
-        00190078
-       </CourseOfJourneyRef>
-       <MonitoredCall>
-        <StopPointRef>
-         16010576
-        </StopPointRef>
-        <VisitNumber>
-         1
-        </VisitNumber>
-        <StopPointName>
-         Åsveien skole
-        </StopPointName>
-        <VehicleLocationAtStop>
-         <Longitude>
-          10.36585
-         </Longitude>
-         <Latitude>
-          63.41459
-         </Latitude>
-        </VehicleLocationAtStop>
-        <DestinationDisplay>
-         Sandmoen
-        </DestinationDisplay>
-        <AimedArrivalTime>
-         2016-09-26T21:10:00+02:00
-        </AimedArrivalTime>
-        <AimedDepartureTime>
-         2016-09-26T21:10:00+02:00
-        </AimedDepartureTime>
-        <ExpectedDepartureTime>
-         2016-09-26T21:14:10
-        </ExpectedDepartureTime>
-        <DepartureStatus>
-         delayed
-        </DepartureStatus>
-       </MonitoredCall>
-      </MonitoredVehicleJourney>
-     </MonitoredStopVisit>
-     <MonitoredStopVisit>
-      <RecordedAtTime>
-       2016-09-26T21:10:42.9495938
+       2016-10-01T20:34:02.3493262
       </RecordedAtTime>
       <MonitoringRef>
        16010576
@@ -125,7 +42,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050184
+        00056092
        </RouteRef>
        <PublishedLineName>
         5
@@ -143,16 +60,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T20:52:00+02:00
+        2016-10-01T20:22:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T21:30:00+02:00
+        2016-10-01T21:00:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         true
        </Monitored>
        <CourseOfJourneyRef>
-        00050184
+        00056092
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -176,23 +93,23 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T21:17:00+02:00
+         2016-10-01T20:47:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T21:17:00+02:00
+         2016-10-01T20:47:00+02:00
         </AimedDepartureTime>
         <ExpectedDepartureTime>
-         2016-09-26T21:22:04
+         2016-10-01T20:48:50
         </ExpectedDepartureTime>
         <DepartureStatus>
-         delayed
+         onTime
         </DepartureStatus>
        </MonitoredCall>
       </MonitoredVehicleJourney>
      </MonitoredStopVisit>
      <MonitoredStopVisit>
       <RecordedAtTime>
-       2016-09-26T21:10:42.9027953
+       2016-10-01T20:34:02.5365214
       </RecordedAtTime>
       <MonitoringRef>
        16010576
@@ -208,34 +125,34 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00190080
+        00196044
        </RouteRef>
        <PublishedLineName>
         19
        </PublishedLineName>
        <OriginRef>
-        16010186
+        16010204
        </OriginRef>
        <OriginName>
-        Hurtigbåtterm.
+        Trondheim S
        </OriginName>
        <DestinationRef>
-        16010640
+        16010088
        </DestinationRef>
        <DestinationName>
-        Sandmoen
+        City Syd Vestre
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T21:25:00+02:00
+        2016-10-01T20:58:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T22:09:00+02:00
+        2016-10-01T21:34:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         true
        </Monitored>
        <CourseOfJourneyRef>
-        00190080
+        00196044
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -256,16 +173,16 @@
          </Latitude>
         </VehicleLocationAtStop>
         <DestinationDisplay>
-         Sandmoen
+         City Syd
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T21:40:00+02:00
+         2016-10-01T21:10:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T21:40:00+02:00
+         2016-10-01T21:10:00+02:00
         </AimedDepartureTime>
         <ExpectedDepartureTime>
-         2016-09-26T21:43:24
+         2016-10-01T21:14:50
         </ExpectedDepartureTime>
         <DepartureStatus>
          delayed
@@ -275,7 +192,7 @@
      </MonitoredStopVisit>
      <MonitoredStopVisit>
       <RecordedAtTime>
-       2016-09-26T21:10:42.0448228
+       2016-10-01T20:33:29.8553594
       </RecordedAtTime>
       <MonitoringRef>
        16010576
@@ -291,7 +208,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050186
+        00056094
        </RouteRef>
        <PublishedLineName>
         5
@@ -309,16 +226,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T21:22:00+02:00
+        2016-10-01T20:52:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T22:00:00+02:00
+        2016-10-01T21:30:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         true
        </Monitored>
        <CourseOfJourneyRef>
-        00050186
+        00056094
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -342,13 +259,13 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T21:47:00+02:00
+         2016-10-01T21:17:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T21:47:00+02:00
+         2016-10-01T21:17:00+02:00
         </AimedDepartureTime>
         <ExpectedDepartureTime>
-         2016-09-26T21:49:03
+         2016-10-01T21:19:42
         </ExpectedDepartureTime>
         <DepartureStatus>
          delayed
@@ -374,7 +291,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050188
+        00056096
        </RouteRef>
        <PublishedLineName>
         5
@@ -392,16 +309,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T21:52:00+02:00
+        2016-10-01T21:22:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T22:30:00+02:00
+        2016-10-01T22:00:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         false
        </Monitored>
        <CourseOfJourneyRef>
-        00050188
+        00056096
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -425,10 +342,10 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T22:17:00+02:00
+         2016-10-01T21:47:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T22:17:00+02:00
+         2016-10-01T21:47:00+02:00
         </AimedDepartureTime>
        </MonitoredCall>
       </MonitoredVehicleJourney>
@@ -451,34 +368,34 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00190082
+        00196046
        </RouteRef>
        <PublishedLineName>
         19
        </PublishedLineName>
        <OriginRef>
-        16010186
+        16010204
        </OriginRef>
        <OriginName>
-        Hurtigbåtterm.
+        Trondheim S
        </OriginName>
        <DestinationRef>
-        16010640
+        16010088
        </DestinationRef>
        <DestinationName>
-        Sandmoen
+        City Syd Vestre
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T22:25:00+02:00
+        2016-10-01T21:58:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T23:09:00+02:00
+        2016-10-01T22:34:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         false
        </Monitored>
        <CourseOfJourneyRef>
-        00190082
+        00196046
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -499,13 +416,13 @@
          </Latitude>
         </VehicleLocationAtStop>
         <DestinationDisplay>
-         Sandmoen
+         City Syd
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T22:40:00+02:00
+         2016-10-01T22:10:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T22:40:00+02:00
+         2016-10-01T22:10:00+02:00
         </AimedDepartureTime>
        </MonitoredCall>
       </MonitoredVehicleJourney>
@@ -528,7 +445,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050190
+        00056098
        </RouteRef>
        <PublishedLineName>
         5
@@ -546,16 +463,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T22:22:00+02:00
+        2016-10-01T21:52:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T23:00:00+02:00
+        2016-10-01T22:30:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         false
        </Monitored>
        <CourseOfJourneyRef>
-        00050190
+        00056098
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -579,10 +496,10 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T22:47:00+02:00
+         2016-10-01T22:17:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T22:47:00+02:00
+         2016-10-01T22:17:00+02:00
         </AimedDepartureTime>
        </MonitoredCall>
       </MonitoredVehicleJourney>
@@ -605,7 +522,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050192
+        00056100
        </RouteRef>
        <PublishedLineName>
         5
@@ -623,16 +540,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T22:52:00+02:00
+        2016-10-01T22:22:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-26T23:30:00+02:00
+        2016-10-01T23:00:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         false
        </Monitored>
        <CourseOfJourneyRef>
-        00050192
+        00056100
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -656,10 +573,10 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T23:17:00+02:00
+         2016-10-01T22:47:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T23:17:00+02:00
+         2016-10-01T22:47:00+02:00
         </AimedDepartureTime>
        </MonitoredCall>
       </MonitoredVehicleJourney>
@@ -682,7 +599,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050194
+        00056102
        </RouteRef>
        <PublishedLineName>
         5
@@ -700,16 +617,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T23:22:00+02:00
+        2016-10-01T22:52:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-27T00:00:00+02:00
+        2016-10-01T23:30:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         false
        </Monitored>
        <CourseOfJourneyRef>
-        00050194
+        00056102
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -733,10 +650,10 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-26T23:47:00+02:00
+         2016-10-01T23:17:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-26T23:47:00+02:00
+         2016-10-01T23:17:00+02:00
         </AimedDepartureTime>
        </MonitoredCall>
       </MonitoredVehicleJourney>
@@ -759,7 +676,7 @@
         bus
        </VehicleMode>
        <RouteRef>
-        00050196
+        00056104
        </RouteRef>
        <PublishedLineName>
         5
@@ -777,16 +694,16 @@
         Buenget
        </DestinationName>
        <OriginAimedDepartureTime>
-        2016-09-26T23:52:00+02:00
+        2016-10-01T23:22:00+02:00
        </OriginAimedDepartureTime>
        <DestinationAimedArrivalTime>
-        2016-09-27T00:30:00+02:00
+        2016-10-02T00:00:00+02:00
        </DestinationAimedArrivalTime>
        <Monitored>
         false
        </Monitored>
        <CourseOfJourneyRef>
-        00050196
+        00056104
        </CourseOfJourneyRef>
        <MonitoredCall>
         <StopPointRef>
@@ -810,10 +727,241 @@
          Buenget
         </DestinationDisplay>
         <AimedArrivalTime>
-         2016-09-27T00:17:00+02:00
+         2016-10-01T23:47:00+02:00
         </AimedArrivalTime>
         <AimedDepartureTime>
-         2016-09-27T00:17:00+02:00
+         2016-10-01T23:47:00+02:00
+        </AimedDepartureTime>
+       </MonitoredCall>
+      </MonitoredVehicleJourney>
+     </MonitoredStopVisit>
+     <MonitoredStopVisit>
+      <RecordedAtTime>
+       2016-09-18T00:00:00
+      </RecordedAtTime>
+      <MonitoringRef>
+       16010576
+      </MonitoringRef>
+      <MonitoredVehicleJourney>
+       <LineRef>
+        5
+       </LineRef>
+       <DirectionRef>
+        go
+       </DirectionRef>
+       <VehicleMode>
+        bus
+       </VehicleMode>
+       <RouteRef>
+        00056106
+       </RouteRef>
+       <PublishedLineName>
+        5
+       </PublishedLineName>
+       <OriginRef>
+        16010266
+       </OriginRef>
+       <OriginName>
+        Lohove
+       </OriginName>
+       <DestinationRef>
+        16010074
+       </DestinationRef>
+       <DestinationName>
+        Buenget
+       </DestinationName>
+       <OriginAimedDepartureTime>
+        2016-10-01T23:52:00+02:00
+       </OriginAimedDepartureTime>
+       <DestinationAimedArrivalTime>
+        2016-10-02T00:30:00+02:00
+       </DestinationAimedArrivalTime>
+       <Monitored>
+        false
+       </Monitored>
+       <CourseOfJourneyRef>
+        00056106
+       </CourseOfJourneyRef>
+       <MonitoredCall>
+        <StopPointRef>
+         16010576
+        </StopPointRef>
+        <VisitNumber>
+         1
+        </VisitNumber>
+        <StopPointName>
+         Åsveien skole
+        </StopPointName>
+        <VehicleLocationAtStop>
+         <Longitude>
+          10.36585
+         </Longitude>
+         <Latitude>
+          63.41459
+         </Latitude>
+        </VehicleLocationAtStop>
+        <DestinationDisplay>
+         Buenget
+        </DestinationDisplay>
+        <AimedArrivalTime>
+         2016-10-02T00:17:00+02:00
+        </AimedArrivalTime>
+        <AimedDepartureTime>
+         2016-10-02T00:17:00+02:00
+        </AimedDepartureTime>
+       </MonitoredCall>
+      </MonitoredVehicleJourney>
+     </MonitoredStopVisit>
+     <MonitoredStopVisit>
+      <RecordedAtTime>
+       2016-09-18T00:00:00
+      </RecordedAtTime>
+      <MonitoringRef>
+       16010576
+      </MonitoringRef>
+      <MonitoredVehicleJourney>
+       <LineRef>
+        105
+       </LineRef>
+       <DirectionRef>
+        go
+       </DirectionRef>
+       <VehicleMode>
+        bus
+       </VehicleMode>
+       <RouteRef>
+        01057002
+       </RouteRef>
+       <PublishedLineName>
+        105
+       </PublishedLineName>
+       <OriginRef>
+        16011347
+       </OriginRef>
+       <OriginName>
+        O. Tryggvasons.
+       </OriginName>
+       <DestinationRef>
+        16010074
+       </DestinationRef>
+       <DestinationName>
+        Buenget
+       </DestinationName>
+       <OriginAimedDepartureTime>
+        2016-10-02T01:00:00+02:00
+       </OriginAimedDepartureTime>
+       <DestinationAimedArrivalTime>
+        2016-10-02T01:24:00+02:00
+       </DestinationAimedArrivalTime>
+       <Monitored>
+        false
+       </Monitored>
+       <CourseOfJourneyRef>
+        01057002
+       </CourseOfJourneyRef>
+       <MonitoredCall>
+        <StopPointRef>
+         16010576
+        </StopPointRef>
+        <VisitNumber>
+         1
+        </VisitNumber>
+        <StopPointName>
+         Åsveien skole
+        </StopPointName>
+        <VehicleLocationAtStop>
+         <Longitude>
+          10.36585
+         </Longitude>
+         <Latitude>
+          63.41459
+         </Latitude>
+        </VehicleLocationAtStop>
+        <DestinationDisplay>
+         Buenget
+        </DestinationDisplay>
+        <AimedArrivalTime>
+         2016-10-02T01:09:00+02:00
+        </AimedArrivalTime>
+        <AimedDepartureTime>
+         2016-10-02T01:09:00+02:00
+        </AimedDepartureTime>
+       </MonitoredCall>
+      </MonitoredVehicleJourney>
+     </MonitoredStopVisit>
+     <MonitoredStopVisit>
+      <RecordedAtTime>
+       2016-09-18T00:00:00
+      </RecordedAtTime>
+      <MonitoringRef>
+       16010576
+      </MonitoringRef>
+      <MonitoredVehicleJourney>
+       <LineRef>
+        119
+       </LineRef>
+       <DirectionRef>
+        go
+       </DirectionRef>
+       <VehicleMode>
+        bus
+       </VehicleMode>
+       <RouteRef>
+        01197002
+       </RouteRef>
+       <PublishedLineName>
+        119
+       </PublishedLineName>
+       <OriginRef>
+        16011347
+       </OriginRef>
+       <OriginName>
+        O. Tryggvasons.
+       </OriginName>
+       <DestinationRef>
+        16011453
+       </DestinationRef>
+       <DestinationName>
+        Flatåsen senter
+       </DestinationName>
+       <OriginAimedDepartureTime>
+        2016-10-02T01:00:00+02:00
+       </OriginAimedDepartureTime>
+       <DestinationAimedArrivalTime>
+        2016-10-02T01:39:00+02:00
+       </DestinationAimedArrivalTime>
+       <Monitored>
+        false
+       </Monitored>
+       <CourseOfJourneyRef>
+        01197002
+       </CourseOfJourneyRef>
+       <MonitoredCall>
+        <StopPointRef>
+         16010576
+        </StopPointRef>
+        <VisitNumber>
+         1
+        </VisitNumber>
+        <StopPointName>
+         Åsveien skole
+        </StopPointName>
+        <VehicleLocationAtStop>
+         <Longitude>
+          10.36585
+         </Longitude>
+         <Latitude>
+          63.41459
+         </Latitude>
+        </VehicleLocationAtStop>
+        <DestinationDisplay>
+         Buenget
+        </DestinationDisplay>
+        <AimedArrivalTime>
+         2016-10-02T01:11:00+02:00
+        </AimedArrivalTime>
+        <AimedDepartureTime>
+         2016-10-02T01:11:00+02:00
         </AimedDepartureTime>
        </MonitoredCall>
       </MonitoredVehicleJourney>
