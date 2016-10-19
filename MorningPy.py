@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Vennligst ikke fjern linjene over. De blir lest av shell og interpreter.
+
 import kivy # pip install Cython, pip install kivy
 from kivy.app import App
 from kivy.uix.label import Label
