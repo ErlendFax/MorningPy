@@ -1,6 +1,12 @@
 import kivy # pip install Cython, pip install kivy
 from kivy.app import App
 from kivy.uix.label import Label
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.widget import Widget
+from kivy.graphics import Line,Color
+from kivy.clock import Clock
+from kivy.graphics.instructions import CanvasBase
+from kivy.graphics.instructions import VertexInstruction
 kivy.require('1.9.1')
 
 import requests # Brukes til å sende og hente. (kivy -m pip install requests )
@@ -18,9 +24,6 @@ SIRI_NAMESPACE = "http://www.siri.org.uk/siri"
 # Bus-stop identifier. Available at AtB's webpages.
 STOP_ID = "16011192" # Ila mot sentrum
 
-class MyApp(App):
-    def build(self):
-        return Label(text='Hello World')
 
 class Buss:
     def __init__(self, node):
@@ -44,7 +47,7 @@ class Buss:
     def returnNode(self):
         return self.node
 
-    def returnLine(self):
+    def getLine(self):
         return self.line
 
     def setDisplay(self,disp):
@@ -52,6 +55,12 @@ class Buss:
 
     def getDisplay(self):
         return self.disp
+
+    def setStop(self,stopName):
+        self.stopName = stopName
+
+    def getStop(self):
+        return self.stopName
 
 
 
@@ -92,16 +101,19 @@ def getBusObj(tree):
                 if subChild.tag == "MonitoredVehicleJourney":
                     myBuses.append(Buss(subChild))
 
-    # Find Line
+    # Find Line, StopName, Display text
     for bus in myBuses:
         for node in bus.node:
             if node.tag == "LineRef":
                 bus.addLine(node.text.strip())
-            if node.tag == "DestinationName":
-                bus.setDisplay(node.text.strip())
+            if node.tag == "MonitoredCall":
+                for snode in node:
+                    if snode.tag == "StopPointName":
+                        bus.setStop(snode.text.strip())
+                    if snode.tag == "DestinationDisplay":
+                        bus.setDisplay(snode.text.strip())
 
     # Extract times (WARN: skjeten kode ahead!)
-
     i = 0
     j = 0
     for bus in myBuses:
@@ -161,61 +173,62 @@ def getXML(stopId, namespace, url):
     f.write(soup.prettify(encoding='UTF-8',formatter='minimal')) # Lagrer en xml fil som er 'pretty'.
     f.close()
 
-def main():
+def mainRun():
     # Uncomment line below to request new XML-data from AtB
-    #getXML(STOP_ID, SIRI_NAMESPACE, SIRI_SM_SERVICE)
+    getXML(STOP_ID, SIRI_NAMESPACE, SIRI_SM_SERVICE)
     tree = ET.parse('AtB.xml')
     busObjs = getBusObj(tree)
 
-    print(datetime.datetime.now().replace(year=1900,month=1,day=1))
-    print(busObjs[0].returnExpectedTime())
-
-    datetime.datetime.now().replace(year=1900, month=1, day=1)
-
-    diff = busObjs[0].returnExpectedTime() - datetime.datetime.now()
-
-
-
-    print(diff.minutes())
-
-    #try:
-
-#        lol = datetime.datetime.now()
- #       lol = lol.time()
-  #      diff = busObjs[0].returnExpectedTime().time() - lol
-   # except:
-    #    lol = datetime.datetime.now()
-     #   lol = lol.time()
-      #  diff = busObjs[0].returnAimedTime() - lol
-
-    #datetime.timedelta(0, 125, 749430)
-
-
-    #print(diff)
-
-    #divmod(diff.total_seconds(),60)
-
-
-
-    #print(diff)
-
-    #try:
-    #    print(busObjs[0].returnExpectedTime().hour)
-    #except:
-    #    print(busObjs[0].returnAimedTime().hour)
-
+    print(busObjs[0].getStop())
     print("")
     print("Ila - mot sentrum")
     print("")
-
     print("------------------------------------------")
     for i in range(0,6):
         try:
-            print('%3s' % busObjs[i].returnLine(), '%19s' % busObjs[i].getDisplay(), " Tid: ", busObjs[i].returnExpectedTime().hour, ':', busObjs[i].returnExpectedTime().minute)
+            print('%3s' % busObjs[i].getLine(), '%19s' % busObjs[i].getDisplay(), " Tid: ", busObjs[i].returnExpectedTime().hour, ':', busObjs[i].returnExpectedTime().minute)
         except:
-            print('%3s' % busObjs[i].returnLine(), '%19s' % busObjs[i].getDisplay(), " Tid: ", busObjs[i].returnAimedTime().hour, ':', busObjs[i].returnAimedTime().minute)
+            print('%3s' % busObjs[i].getLine(), '%19s' % busObjs[i].getDisplay(), " Tid: ", busObjs[i].returnAimedTime().hour, ':', busObjs[i].returnAimedTime().minute)
         print("------------------------------------------")
     print("")
 
+    return busObjs
+
+class MyApp(App):
+
+    busObjs = mainRun()
+
+    def build(self):
+        r = FloatLayout()
+        l = []
+        myB = []
+
+        l.append(Label(text=MyApp().busObjs[0].getStop(), font_size=40, pos_hint={'x': -0.42, 'center_y': 0.91}))
+
+        i = 0
+        while (len(myB) < 4):
+            if (MyApp().busObjs[i].getLine() == "11" or MyApp().busObjs[i].getLine() == "5" or MyApp().busObjs[i].getLine() == "8" or MyApp().busObjs[i].getLine() == "63" or MyApp().busObjs[i].getLine() == "18"):
+                myB.append(MyApp().busObjs[i])
+            i = i + 1
+
+        for j in range(len(myB)):
+            l.append(Label(text=myB[j].getDisplay(), font_size=30, pos_hint={'x': -0.15, 'center_y': 0.7 - j * 0.05}))
+            l.append(Label(text=myB[j].getLine(), font_size=30, pos_hint={'x': -0.4, 'center_y': 0.7 - j * 0.05}))
+            try:
+                l.append(Label(text=str(myB[j].returnExpectedTime().hour) + ":" + str('%02d' % int(float(myB[j].returnExpectedTime().minute))), font_size=30, pos_hint={'x': 0.1, 'center_y': 0.7 - j * 0.05}))
+            except:
+                l.append(Label(text=str(myB[j].returnAimedTime().hour) + ":" + str('%02d' % int(float(myB[j].returnAimedTime().minute))), font_size=30,pos_hint={'x': 0.1, 'center_y': 0.7 - j * 0.05}))
+
+        with r.canvas:
+            Color(1,1,1,1)
+            Line(bezier=[50, 500, 700, 500], width=2)
+
+        for k in range(0, len(l)):
+            r.add_widget(l[k])
+
+        return r
+
+
 if __name__ == '__main__':
-    main()
+        MyApp().run()
+
