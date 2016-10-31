@@ -1,33 +1,32 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-<<<<<<< Updated upstream
-# Vennligst ikke fjern linjene over. De blir lest av shell og interpreter.
-=======
-# Bruker du python 3 skal man ikke trenge linjen over :p
->>>>>>> Stashed changes
-
-import kivy # pip install Cython, pip install kivy
 from kivy.app import App
+from kivy.uix.widget import Widget
 from kivy.graphics import Color, Line
 from kivy.uix.floatlayout import FloatLayout
+from math import cos, sin, pi
 from kivy.clock import Clock
+from kivy.lang import Builder
+from kivy.properties import NumericProperty
 from kivy.uix.label import Label
-<<<<<<< Updated upstream
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.widget import Widget
-from kivy.graphics import Line,Color
-from kivy.clock import Clock
-from kivy.graphics.instructions import CanvasBase
-from kivy.graphics.instructions import VertexInstruction
-kivy.require('1.9.1')
-=======
 from kivy.core.window import Window
->>>>>>> Stashed changes
+
+from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.graphics import Color, Line
+from kivy.uix.floatlayout import FloatLayout
+from math import cos, sin, pi
+from kivy.clock import Clock
+from kivy.lang import Builder
+from kivy.properties import NumericProperty
+from kivy.uix.label import Label
+from kivy.core.window import Window
+from kivy.config import Config
 
 import requests # Brukes til å sende og hente. (kivy -m pip install requests )
 import bs4 # Håndtering av XML (kivy -m pip install bs4)
 import xml.etree.ElementTree as ET # Alternativt bibliotek for XML-parsing (kivy -m pip install lxml)
 import datetime # Brukes for å få differensen mellom to tider enklere
+
+import datetime
 
 SOAP_ACTION_GET_STOP_MONITORING = "GetStopMonitoring"
 NODE_MONITORED_VEHICLE_JOURNEY = "MonitoredVehicleJourney"
@@ -38,10 +37,6 @@ SIRI_NAMESPACE = "http://www.siri.org.uk/siri"
 # Bus-stop identifier. Available at AtB's webpages.
 STOP_ID = "16011192" # Ila mot sentrum
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 class Buss:
     def __init__(self, node):
         self.node = node
@@ -91,13 +86,6 @@ class Buss:
 
     def setStop(self,stopName):
         self.stopName = stopName
-<<<<<<< Updated upstream
-
-    def getStop(self):
-        return self.stopName
-
-=======
->>>>>>> Stashed changes
 
     def getStop(self):
         return self.stopName
@@ -225,11 +213,7 @@ def mainRun():
     tree = ET.parse('AtB.xml')
     busObjs = getBusObj(tree)
 
-<<<<<<< Updated upstream
-    print(busObjs[0].getStop())
-=======
     """print(busObjs[0].getStop())
->>>>>>> Stashed changes
     print("")
     print("Ila - mot sentrum")
     print("")
@@ -240,22 +224,6 @@ def mainRun():
         except:
             print('%3s' % busObjs[i].getLine(), '%19s' % busObjs[i].getDisplay(), " Tid: ", busObjs[i].returnAimedTime().hour, ':', busObjs[i].returnAimedTime().minute)
         print("------------------------------------------")
-<<<<<<< Updated upstream
-    print("")
-
-    return busObjs
-
-class MyApp(App):
-
-    busObjs = mainRun()
-
-    def build(self):
-        r = FloatLayout()
-        l = []
-        myB = []
-
-        l.append(Label(text=MyApp().busObjs[0].getStop(), font_size=40, pos_hint={'x': -0.42, 'center_y': 0.91}))
-=======
     print("")"""
 
     return busObjs
@@ -265,14 +233,14 @@ class Content(FloatLayout):
         super(Content, self).__init__(**kwargs)
 
         with self.canvas:
-            Line(points=[Window.width * 0.03, Window.height * 0.83, Window.width * 0.97, Window.height * 0.83], width=2)
+            Line(points=[Window.width * 0.05, Window.height * 0.83, Window.width * 0.95, Window.height * 0.83], width=3)
 
             # Clock
         self.clk = Label(text = "", pos_hint={'center_x':0.5,'center_y':0.90}, font_size=50)
         self.add_widget(self.clk)
 
             # Date
-        self.dat = Label(text="", pos_hint={'center_x': 0.85, 'center_y': 0.90}, font_size=25)
+        self.dat = Label(text="", pos_hint={'center_x': 0.85, 'center_y': 0.90}, font_size=30)
         self.add_widget(self.dat)
 
             # Busstop
@@ -308,37 +276,8 @@ class Content(FloatLayout):
 
         Clock.schedule_interval(self.my_callback, 15)
         Clock.schedule_interval(self.my_callback_datetime, 1)
->>>>>>> Stashed changes
-
-        i = 0
-        while (len(myB) < 4):
-            if (MyApp().busObjs[i].getLine() == "11" or MyApp().busObjs[i].getLine() == "5" or MyApp().busObjs[i].getLine() == "8" or MyApp().busObjs[i].getLine() == "63" or MyApp().busObjs[i].getLine() == "18"):
-                myB.append(MyApp().busObjs[i])
-            i = i + 1
-
-<<<<<<< Updated upstream
-        for j in range(len(myB)):
-            l.append(Label(text=myB[j].getDisplay(), font_size=30, pos_hint={'x': -0.15, 'center_y': 0.7 - j * 0.05}))
-            l.append(Label(text=myB[j].getLine(), font_size=30, pos_hint={'x': -0.4, 'center_y': 0.7 - j * 0.05}))
-            try:
-                l.append(Label(text=str(myB[j].returnExpectedTime().hour) + ":" + str('%02d' % int(float(myB[j].returnExpectedTime().minute))), font_size=30, pos_hint={'x': 0.1, 'center_y': 0.7 - j * 0.05}))
-            except:
-                l.append(Label(text=str(myB[j].returnAimedTime().hour) + ":" + str('%02d' % int(float(myB[j].returnAimedTime().minute))), font_size=30,pos_hint={'x': 0.1, 'center_y': 0.7 - j * 0.05}))
-
-        with r.canvas:
-            Color(1,1,1,1)
-            Line(bezier=[50, 500, 700, 500], width=2)
-
-        for k in range(0, len(l)):
-            r.add_widget(l[k])
-
-        return r
 
 
-if __name__ == '__main__':
-        MyApp().run()
-
-=======
     def my_callback_datetime(self,dt=0):
         self.clk.text = str(datetime.datetime.now().strftime('%H:%M:%S'))
         self.dat.text = str(datetime.datetime.now().strftime('%d. %B %Y'))
@@ -389,4 +328,3 @@ if __name__=="__main__":
     Window.fullscreen = True
     Window.size = (1440, 900) # Endre tildin skjermstørrelse
     MyApp().run()
->>>>>>> Stashed changes
