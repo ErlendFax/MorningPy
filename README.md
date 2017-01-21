@@ -6,5 +6,5 @@ Download/refresh XML-data.
 
 > nextbus.py
 
-Extract next bus.
+Goal: return n second until departure.
 
