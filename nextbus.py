@@ -6,6 +6,8 @@ import xmlParse as xmlp
 from bus import Buss
 
 if __name__ == '__main__':
-    xmlg.getXML();
+    #xmlg.getXML();
     buses = xmlp.getBusObj()
+
+    #goal: return n seconds for next departure
 

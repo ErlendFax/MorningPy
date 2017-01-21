@@ -1,27 +1,14 @@
 class Buss:
     def __init__(self, node):
         self.node = node
-        self.expectedTime = None
+        self.realtime = None
 
-    def addAimedTime(self,aimedTime):
-        self.aimedTime = aimedTime
+    def addTime(self, time, realtime=False):
+        if realtime == False:
+            self.aimedtime = time
+        else:
+            self.realtime = time
 
-    def addExpectedTime(self, expectedTime):
-        # consider adding here
-        self.expectedTime = expectedTime
-
-    def getExpectedUntilDeparture(self):
-        if self.expectedTime == None:
-            return None
-
-        now = datetime.datetime.now()
-        expected = datetime.datetime.combine(now, self.expectedTime)
-        return expected - now
-
-    # remove functions below when unified into getTime()
-    def returnAimedTime(self):
-        return self.aimedTime
-
-    def returnExpectedTime(self):
-        return self.expectedTime
+    def getDepartureTimeSeconds(self):
+        pass
 
