@@ -1,6 +1,4 @@
 #!/usr/abin/env python3
-# Download XML file form atb.no
-
 import bs4
 import requests
 import datetime
@@ -13,8 +11,8 @@ NODE_MONITORED_VEHICLE_JOURNEY = "MonitoredVehicleJourney"
 SIRI_SM_SERVICE = "http://st.atb.no/SMWS/SMService.svc"
 SIRI_NAMESPACE = "http://www.siri.org.uk/siri"
 
-def getEnvelope(stopId, namespace):
-    return ("<S:Envelope xmlns:S='http://schemas.xmlsoap.org/soap/envelope/' xmlns:s='http://www.siri.org.uk/siri' xmlns:b='" + namespace + "'>" +
+def getEnvelope():
+    return ("<S:Envelope xmlns:S='http://schemas.xmlsoap.org/soap/envelope/' xmlns:s='http://www.siri.org.uk/siri' xmlns:b='" + SIRI_NAMESPACE + "'>" +
             "   <S:Body>" +
             "       <b:GetStopMonitoring>" +
             "           <ServiceRequestInfo>" +
@@ -22,15 +20,14 @@ def getEnvelope(stopId, namespace):
             "           </ServiceRequestInfo>" +
             "           <Request version='1.4'>" +
             "               <s:PreviewInterval>P0DT5H0M0.000S</s:PreviewInterval>" +
-            "               <s:MonitoringRef>" + stopId + "</s:MonitoringRef>" +
+            "               <s:MonitoringRef>" + STOP_ID + "</s:MonitoringRef>" +
             "           </Request>" +
             "       </b:GetStopMonitoring>" +
             "   </S:Body>" +
             "</S:Envelope>")
 
-def getXML(stopId, namespace, url):
-
-    body = getEnvelope(STOP_ID, SIRI_NAMESPACE)
+def getXML():
+    body = getEnvelope()
     headers = {'Content-type': 'text/xml; charset=UTF-8', "SOAPAction": SOAP_ACTION_GET_STOP_MONITORING}
 
     response = requests.post(SIRI_SM_SERVICE, data=body, headers=headers)
@@ -47,9 +44,8 @@ def getXML(stopId, namespace, url):
     f.close()
 
 
-def getXML(stopId, namespace, url):
-
-    body = getEnvelope(STOP_ID, SIRI_NAMESPACE)
+def getXML():
+    body = getEnvelope()
     headers = {'Content-type': 'text/xml; charset=UTF-8', "SOAPAction": SOAP_ACTION_GET_STOP_MONITORING}
 
     response = requests.post(SIRI_SM_SERVICE, data=body, headers=headers)
@@ -65,4 +61,3 @@ def getXML(stopId, namespace, url):
     f.write(soup.prettify(encoding='UTF-8',formatter='minimal')) # Lagrer en xml fil som er 'pretty'.
     f.close()
 
-getXML(STOP_ID, SIRI_NAMESPACE, SIRI_SM_SERVICE)

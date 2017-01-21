@@ -1,63 +1,10 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Vennligst ikke fjern linjene over. De blir lest av shell og interpreter.
 
 import bs4 # Håndtering av XML
 import xml.etree.ElementTree as ET
 import datetime
 import getxml
-
-class Buss:
-    def __init__(self, node):
-        self.node = node
-        # avoid undefined behaviour if RT is unavailable
-        self.expectedTime = None
-
-    def addAimedTime(self,aimedTime):
-        self.aimedTime = aimedTime
-
-    def addExpectedTime(self, expectedTime):
-        # consider adding here
-        self.expectedTime = expectedTime
-
-    def getExpectedUntilDeparture(self):
-        if self.expectedTime == None:
-            return None
-
-        now = datetime.datetime.now()
-        expected = datetime.datetime.combine(now, self.expectedTime)
-        return expected - now
-
-
-    def returnAimedTime(self):
-        return self.aimedTime
-
-    def returnExpectedTime(self):
-        return self.expectedTime
-
-    def addLine(self, line):
-        self.line = line
-
-    def returnNode(self):
-        return self.node
-
-    def getLine(self):
-        return self.line
-
-    def setDisplay(self,disp):
-        self.disp = disp
-
-    def getDisplay(self):
-        return self.disp
-
-    def setStop(self,stopName):
-        self.stopName = stopName
-
-    def getStop(self):
-        return self.stopName
-
-
-
+from bus import Buss
 
 def getBusObj(tree):
     """ Parse XML, create bus objects """
@@ -90,17 +37,6 @@ def getBusObj(tree):
                 if subChild.tag == "MonitoredVehicleJourney":
                     myBuses.append(Buss(subChild))
 
-    # Find Line, StopName, Display text
-    for bus in myBuses:
-        for node in bus.node:
-            if node.tag == "LineRef":
-                bus.addLine(node.text.strip())
-            if node.tag == "MonitoredCall":
-                    for snode in node:
-                        if snode.tag == "StopPointName":
-                            bus.setStop(snode.text.strip())
-                        if snode.tag == "DestinationDisplay":
-                            bus.setDisplay(snode.text.strip())
 
     # Extract times (WARN: skjeten kode ahead!)
     i = 0
@@ -133,15 +69,8 @@ def getBusObj(tree):
                             j = j + 1
     return myBuses
 
-def mainRun():
+if __name__ == '__main__':
+    getxml.getXML();
     tree = ET.parse('AtB.xml')
     busObjs = getBusObj(tree)
-    print("Line\tDisp\tDeparting in")
-    for bus in busObjs:
-        if bus.getExpectedUntilDeparture() != None:
-                print(bus.getLine(),'\t',bus.getDisplay(),'\t', bus.getExpectedUntilDeparture())
-    return busObjs
-
-if __name__ == '__main__':
-    mainRun()
 
