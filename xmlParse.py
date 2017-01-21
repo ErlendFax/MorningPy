@@ -27,12 +27,11 @@ def getBusObj():
                 for subnode in node:
                     if subnode.tag == "AimedDepartureTime":
                         time = striptime(subnode.text)
-                        print(time)
-                        bus.addTime(time)
+                        bus.addTime(time, False)
                         i = i + 1
                     if subnode.tag == "ExpectedDepartureTime":
                         time = striptime(subnode.text)
-                        bus.addTime(time)
+                        bus.addTime(time, True)
                         j = j + 1
     return myBuses
 
