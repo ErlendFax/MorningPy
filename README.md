@@ -1,8 +1,8 @@
 # MorningPy
 
-## morningFlask
+## morningDjango
 
-This is intended as a sub-module of a larger *morning-system* with a web-interface with **Flask** in the background.
+MorningPy implemented on a [Django](https://www.djangoproject.com/)-server. Below are descriptions for the MorningPy-specific modules. As it stands this is merely a PoC.
 
 > nextbus.py
 
