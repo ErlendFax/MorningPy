@@ -9,7 +9,7 @@ class Buss:
         else:
             self.realtime = time
 
-    def getDepartureTimeSeconds(self):
+    def getDepartureTime(self):
         if self.realtime == None:
             return self.aimedtime
         else:

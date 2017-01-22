@@ -1,4 +1,4 @@
-<meta http-equiv="refresh" content="15" />
+<meta http-equiv="refresh" content="30" />
 <html>
 {% load static %}
 <head>
@@ -6,22 +6,42 @@
 	<link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
 </head>
 <body>
-<h1>MorningPy</h1>
+	<h1>MorningPy</h1>
+	<p>{{ time }}</p>
 
-{% if seconds or minutes %}
-<h2>Next Departure</h2>
+{% if time1  %}
+<h2>Gløshaugen</h2>
 <div id="clockdiv">
 	<div>
-		<span class="minutes">{{ minutes }}<span>
-		<div class="clockheading">Minutes</div>
+		<span class="minutes">{{ time1.hour }}<span>
+		<div class="clockheading">Hour</div>
 	</div>
 	<div>
-		<span class="seconds">{{ seconds }}<span>
-		<div class="clockheading">Seconds</div>
+		<span class="seconds">{{ time1.minute }}<span>
+		<div class="clockheading">Minute</div>
 	</div>
 </div>
 {% else %}
-    <p>No departures available.</p>
+    <p>No departures available from this stop :-(</p>
 {% endif %}
+
+{% if time2  %}
+<h2>Migosenteret</h2>
+<div id="clockdiv">
+	<div>
+		<span class="minutes">{{ time2.hour }}<span>
+		<div class="clockheading">Hour</div>
+	</div>
+	<div>
+		<span class="seconds">{{ time2.minute }}<span>
+		<div class="clockheading">Minute</div>
+	</div>
+</div>
+{% else %}
+    <p>No departures available from this stop :-(</p>
+{% endif %}
+
+
+
 </body>
 </html>

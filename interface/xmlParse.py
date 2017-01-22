@@ -5,7 +5,7 @@ import bs4
 import xml.etree.ElementTree as ET
 from bus import Buss
 
-def getBusObj():
+def getBusObj(busNumber):
     tree = ET.parse('AtB.xml')
     root = tree.getroot()
     curChild = navigate(root)
@@ -16,7 +16,13 @@ def getBusObj():
         if child.tag == "MonitoredStopVisit":
             for subChild in child:
                 if subChild.tag == "MonitoredVehicleJourney":
-                    myBuses.append(Buss(subChild))
+                    if busNumber == None:
+                        myBuses.append(Buss(subChild))
+                    else:
+                        for node in subChild:
+                            if node.tag == "LineRef":
+                                if int(node.text) in busNumber:
+                                    myBuses.append(Buss(subChild))
 
     # Extract departure times
     i = 0

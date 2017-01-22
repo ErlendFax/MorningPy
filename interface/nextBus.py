@@ -2,35 +2,30 @@
 
 import datetime
 import time
-import xmlGet as xmlg
-import xmlParse as xmlp
+import xmlGet
+import xmlParse
 from bus import Buss
 
-# helper
 def timeDelta(t1, t2):
     s = t2.second - t1.second
     s += 60*(t2.minute - t1.minute)
     s += 3600*(t2.hour - t1.hour)
     return abs(s)
 
-def nextBus():
-    xmlg.getXML()
-    buses = xmlp.getBusObj()
+def getBus(busStopID, busNumber=None):
+    xmlGet.getXML(busStopID)
+    buses = xmlParse.getBusObj(busNumber)
 
     t1 = datetime.datetime.now().time()
-    lt = []
+    ret = None
+    tbest = 99999
     for bus in buses:
-        t2 = bus.getDepartureTimeSeconds()
-        lt.append(timeDelta(t1, t2))
+        t2 = bus.getDepartureTime()
+        if timeDelta(t1, t2) < tbest:
+            ret = bus
+            tbest = timeDelta(t1, t2)
 
-    # no departures?
-    if not lt:
-        return None
+    return ret
 
-    return min(lt)
-
-# set up loop in this block
 if __name__ == '__main__':
-    print(nextBus())
-    time.sleep(10)
-    print(nextBus())
+    print(getBus(16011576, [5]))
