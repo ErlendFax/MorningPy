@@ -6,6 +6,7 @@ import nextBus as nb
 
 def index(request):
     raw = nb.nextBus()
+    #raw = 789
     m = int(raw/60)
     s = raw - m*60
     context = {'minutes': m, 'seconds': s, 'raw': raw}

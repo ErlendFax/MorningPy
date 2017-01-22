@@ -1,9 +1,25 @@
 <meta http-equiv="refresh" content="15" />
 <html>
+{% load static %}
+<head>
+	<title>MorningPy</title>
+	<link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+</head>
 <body>
+<h1>MorningPy</h1>
+
 {% if seconds or minutes %}
-<h1> {{ minutes }} minutes and {{ seconds }} seconds</h1>
-<p>Raw: {{ raw }} </p>
+<h2>Next Departure</h2>
+<div id="clockdiv">
+	<div>
+		<span class="minutes">{{ minutes }}<span>
+		<div class="clockheading">Minutes</div>
+	</div>
+	<div>
+		<span class="seconds">{{ seconds }}<span>
+		<div class="clockheading">Seconds</div>
+	</div>
+</div>
 {% else %}
     <p>No departures available.</p>
 {% endif %}
