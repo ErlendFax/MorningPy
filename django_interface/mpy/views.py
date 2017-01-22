@@ -9,7 +9,13 @@ import bus
 def index(request):
     busGlos = nb.getBus(16011576, [5])
     busMigo = nb.getBus(16010576, [5])
-    context = {'time': datetime.now(),
-               'time1': busGlos.getDepartureTime(),
-               'time2': busMigo.getDepartureTime()}
+    context = {}
+
+    # improve error handling, consider _try_
+    if busGlos is not None:
+        context['time1'] = busGlos.getDepartureTime()
+    if busMigo is not None:
+        context['time2'] = busMigo.getDepartureTime()
+
+    context['time'] = datetime.now()
     return render(request, 'mpy/index.html', context)
